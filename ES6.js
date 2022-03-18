@@ -346,10 +346,90 @@ function repeatStr (n, s) {
 /*******************Algorithms*******************/
 /*is this a triangle?
 https://www.codewars.com/kata/56606694ec01347ce800001b*/
+function isTriangle(a,b,c) {
+  if(a > 0 && b > 0 && c > 0) {
+    if(a < b + c && b < a + c && c < a + b) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  else {
+   return false;
+  }
+}
+//optimal
+function isTriangle(a,b,c)
+{
+   return a + b > c && a + c > b && c + b > a;
+}
 
 
+/*find the next perfect square
+https://www.codewars.com/kata/56269eb78ad2e4ced1000013*/
+function findNextSquare(sq) {
+  var number = Math.sqrt(sq);
+  if(Math.round(number) === number) {
+    return Math.pow(++number, 2)
+  }
+  return -1;
+}
+//optimal
+function findNextSquare(sq) {
+  return Math.sqrt(sq)%1? -1 : Math.pow(Math.sqrt(sq)+1,2);
+}
 
 
+/**credit card mask
+https://www.codewars.com/kata/5412509bd436bd33920011bc */
+//my solution and it's not perfect
+function maskify(cc) { 
+  return cc.split('').slice(0, cc.length-4).map((x) => x.replace(x,'#')).concat(cc.split('').slice(cc.length-4)).join(''); 
+}
+//codewars solution
+function maskify(cc) {
+  cc = cc.split("");
+  for(var i = 0; i < cc.length - 4; i++){
+    cc[i] = "#";
+  }
+  cc = cc.join("");
+  return cc;
+}
+//optimal solution
+function maskify(cc) {
+  return cc.slice(-4).padStart(cc.length,'#'); //padStart is a predifined function which hide part of the string
+}
+
+
+/** sum of odd numbers
+ * https://www.codewars.com/kata/55fd2d567d94ac3bc9000064 */
+ function rowSumOddNumbers(n)
+ {
+   /* The rows' start numbers are Hogben's centered polygonal numbers:
+      1, 3, 7, 13, 21, 31, 43 = b[n] = n^2 - n + 1.
+      <https://oeis.org/A002061>
+      
+      The sum of one row is given by:
+      s[n] = n^2 + n(b[n] - 1).
+      <https://www.quora.com/What-is-the-sum-of-n-consecutive-odd-integers/answer/Xavier-Dectot>
+      
+      Inline b[n]:
+      s[n] = n^2 + n(n^2 - n + 1 - 1)
+           = n^2 + n(n^2 - n)
+           = n^2 + n^3 - n^2
+           = n^3
+      ... oh. */
+   return Math.pow(n, 3);
+ }
+
+ /**find the divisors
+  * https://www.codewars.com/kata/544aed4c4a30184e960010f4 */
+ function divisors(n){
+   while(n/i !== 1){
+     i++;
+   }
+ }
 
 
 
